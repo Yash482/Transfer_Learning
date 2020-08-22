@@ -89,3 +89,26 @@ model.compile(loss = 'binary_crossentropy', optimizer = optimizers.RMSprop(lr = 
 
 #===============================================================
 
+#Data Augmentation
+from keras.preprocessing.image import ImageDataGenerator
+train_datagen = ImageDataGenerator( rescale=1./255, rotation_range= 50,
+                                    shear_range=0.2,
+                                    zoom_range=0.3,
+                                    horizontal_flip=True )
+
+val_datagen = ImageDataGenerator(rescale=1./255)
+
+train_generator = train_datagen.flow(train_imgs, train_labels_enc, batch_size = 30)
+
+val_generator = train_datagen.flow(validation_imgs, validation_labels_enc, batch_size = 20)
+
+
+#===================================================================
+
+#As data and model is ready.........training starts
+
+hist = model.fit_generator(train_generator, steps_per_epoch = 100,
+                           epochs= 25, validation_data = val_generator,
+                           validation_steps = 50, verbose=1)
+
+
