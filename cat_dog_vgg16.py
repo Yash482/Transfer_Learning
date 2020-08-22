@@ -34,3 +34,22 @@ validation_imgs_scaled /= 255
 print(train_imgs[0].shape)
 array_to_img(train_imgs[0])
 #==================================================================
+
+#Basic parameters
+batch_size = 30
+num_classes = 2
+epochs = 30
+input_shape = (150, 150, 3)
+
+# encode text category labels
+from sklearn.preprocessing import LabelEncoder
+
+le = LabelEncoder()
+le.fit(train_labels)
+train_labels_enc = le.transform(train_labels)
+validation_labels_enc = le.transform(validation_labels)
+
+print(train_labels[1495:1505], train_labels_enc[1495:1505])
+
+#===================================================================
+
