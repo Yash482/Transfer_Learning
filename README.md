@@ -20,3 +20,7 @@ We just use that earlier training where features are extracted.
 
 After that we made our model and add vgg model to it. Our model contains only FC layers for using the features from vgg model and use them to classify.
 
+# Traning
+Without data augmentation, we got an accuracy of 87% on validation data.
+While this is better than normal CNN, but can be improved.
+After data augmentation, 90% accuracy is achieved.
