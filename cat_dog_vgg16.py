@@ -53,3 +53,23 @@ print(train_labels[1495:1505], train_labels_enc[1495:1505])
 
 #===================================================================
 
+#get pre trained VGG16 network
+from keras.applications import vgg16
+from keras.models import Model
+import keras
+
+
+vgg = vgg16.VGG16(include_top = False, weights = 'imagenet', input_shape = input_shape)
+output = vgg.layers[-1].output
+output = keras.layers.Flatten()(output)
+vgg_model = Model(vgg.input , output)
+#model ready
+
+#Froze he model
+vgg_model.trainable = False
+for layer in vgg_model.layers:
+    layer.trainable = False
+
+#All the layers and the model is frozen now
+#==========================================================
+
