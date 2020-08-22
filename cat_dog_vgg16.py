@@ -73,3 +73,19 @@ for layer in vgg_model.layers:
 #All the layers and the model is frozen now
 #==========================================================
 
+#Defining our model
+from keras.layers import Dense, Dropout, InputLayer
+from keras.models import Sequential
+from keras import optimizers
+
+model = Sequential()
+model.add(vgg_model)
+model.add(Dense(512, activation = 'relu', input_dim = input_shape))
+model.add(Dropout(0.3))
+model.add(Dense(512, activation = 'relu'))
+model.add(Dropout(0.3))
+model.add(Dense(1, activation = 'sigmoid'))
+model.compile(loss = 'binary_crossentropy', optimizer = optimizers.RMSprop(lr = 1e-4), metrics = ['accuracy'])
+
+#===============================================================
+
