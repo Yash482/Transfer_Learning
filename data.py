@@ -46,19 +46,4 @@ for fn in validate_files:
     
 for fn in test_files:
     shutil.copy(fn, test_dir)
-    
-IMG_DIM = (150, 150)
-
-train_files = glob.glob('training_data/*')
-train_imgs = [img_to_array(load_img(img, target_size=IMG_DIM)) for img in train_files]
-train_imgs = np.array(train_imgs)
-train_labels = [fn.split('\\')[1].split('.')[0].strip() for fn in train_files]
-
-validation_files = glob.glob('validation_data/*')
-validation_imgs = [img_to_array(load_img(img, target_size=IMG_DIM)) for img in validation_files]
-validation_imgs = np.array(validation_imgs)
-validation_labels = [fn.split('\\')[1].split('.')[0].strip() for fn in validation_files]
-
-print('Train dataset shape:', train_imgs.shape, 
-      '\tValidation dataset shape:', validation_imgs.shape)
 
